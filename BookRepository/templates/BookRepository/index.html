@@ -1,0 +1,59 @@
+{% extends "BookRepository/base.html" %}
+
+{% block main %}
+<main>
+  <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-inner">
+                <div class="carousel-item active">
+                <img src="/static/BookRepository/images/inicio1.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                <img src="/static/BookRepository/images/inicio2.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                <img src="/static/BookRepository/images/inicio3.jpg" class="d-block w-100" alt="...">
+                </div>
+        </div>
+    </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+        </button>
+  </div>
+
+
+  <!-- Marketing messaging and featurettes
+  ================================================== -->
+  <!-- Wrap the rest of the page in another container to center all the content. -->
+
+  <div class="container marketing">
+
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+
+      {% for libro in libros %}
+        <div class="col-lg-4">
+          <img src="{{ libro.imagen.url }}" height="144" width="144">
+          <br>
+          <br>
+          <ul>Titulo: {{libro.titulo}}</ul>
+          <ul>Autor: {{libro.autor}}</ul>
+          <ul>Creador del Post: {{libro.publisher.username}} </ul>
+          <ul>Fecha de creación: {{libro.creacion}} </ul>
+          <p><a class="btn btn-secondary" href="{% url 'libro-detail' libro.id %}">Ver más »</a></p>
+        </div>
+      {% endfor %}  
+   
+    </div>
+
+  </div> 
+
+</main>
+{% endblock %}
+

@@ -1,0 +1,15 @@
+{% extends "BookRepository/base.html" %}
+
+{% block main %}
+<br>
+</br>
+<h1>Estas seguro que queres borrar el libro {{object.titulo}}?</h1>
+<form method="POST">
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" value="Borrar">
+</form>
+<br>
+</br>
+<a href="javascript:history.back()"> Volver</a>
+{% endblock %}

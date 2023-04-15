@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://localhost:8000/ -->
+<html lang="es">
+  
+<head>
+    {% load static %}
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.84.0">
+    <title>Book Repository</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/carousel/">
+    
+    <!-- Bootstrap core CSS -->
+<link href="{% static 'BookRepository/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Favicons -->
+<link rel="apple-touch-icon" href="{% static 'BookRepository/images/icono.jpg' %}" sizes="180x180">
+<link rel="icon" href="{% static 'BookRepository/images/icono.jpg' %}" sizes="32x32" type="image/png">
+<link rel="icon" href="{% static 'BookRepository/images/icono.jpg' %}" sizes="16x16" type="image/png">
+<link rel="manifest" href="https://getbootstrap.com/docs/5.0/assets/img/favicons/manifest.json">
+<link rel="mask-icon" href="https://getbootstrap.com/docs/5.0/assets/img/favicons/safari-pinned-tab.svg" color="#7952b3">
+<link rel="icon" href="{% static 'BookRepository/images/icono.jpg' %}">
+<meta name="theme-color" content="#7952b3">
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="{% static 'BookRepository/css/carousel.css' %}" rel="stylesheet">
+</head>
+  <body>
+      
+    <header>
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <div class="container-fluid">
+
+
+          <a class="navbar-brand" href="{% url 'index' %}">Book Repository</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+              <li class="nav-item">
+                
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Libros</a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="{% url 'libro-list' %}">Listar Libros</a></li>
+                      <li><a class="dropdown-item" href="{% url 'libro-create' %}">Crear Libro</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Autores</a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="{% url 'autor-list' %}">Listar Autores</a></li>
+                      <li><a class="dropdown-item" href="{% url 'autor-create' %}">Crear Autor</a></li>
+                    </ul>
+                </li>       
+              </li>  
+            </ul>
+
+                        {% if user.is_authenticated %}
+                        <div class="btn-group dropstart" >
+                          <a class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">{{user.username}}
+                              {% if user.profile.imagen %} 
+                              <img src="{{user.profile.imagen.url}}" height="100%" width="36px" style="border-radius: 50%; margin-left:15px">
+                              {% endif %} 
+                          </a>
+                            <ul class="dropdown-menu">
+                                {% if user.profile.id %}
+                                <a class="dropdown-item" href="{% url 'profile-update' user.profile.id %}">Actualizar Perfil</a>
+                                {% else %}
+                                <a class="dropdown-item" href="{% url 'profile-create' %}">Crear Perfil</a>
+                                {% endif %}
+                                <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                            </ul>
+                        </div>
+                        {% else %}  
+                        <div class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Login</a>
+                        </div>
+                        <div class="nav-item">
+                        <a class="nav-link" href="{% url 'signup' %}">Registrarme</a>
+                        </div>
+                        
+                        {% endif %}
+
+                          <li class="btn-group dropstart">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Mensajes</a>
+                            <ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="{% url 'mensaje-list' %}">Listar Mensajes</a></li>
+                              <li><a class="dropdown-item" href="{% url 'mensaje-create' %}">Crear Mensaje</a></li>
+                            </ul>
+                          </li> 
+          </div>
+        </div>
+      </nav>
+    </header>
+    {% block main %}
+      <div class="text-center">
+        <br>
+        </br>
+        <img src="{% static 'BookRepository/images/libros.jpg' %}" class="img-fluid" alt="..." >
+      </div>
+    {% endblock %}
+    
+    <!-- FOOTER -->
+<div id="footer">
+  <footer class="container">
+    <p class="float-end"><a href="{% url 'index' %}">Back to Main</a></p>
+    <p>© 2023 Fernando Matias Gonzalez   ····   <a href="{% url 'about_me' %}">About Me</a>   ····</p>
+  </footer>
+</div>
+  
+    <script src="{% static 'BookRepository/js/bootstrap.bundle.min.js' %}"></script>
+  </body>
+</html>

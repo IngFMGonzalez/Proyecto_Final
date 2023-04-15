@@ -1,0 +1,14 @@
+{% extends "BookRepository/base.html" %}
+
+{% block main %}
+<br>
+</br>
+<form method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Enviar">
+</form>
+<br>
+</br>
+<a href="javascript:history.back()"> Volver</a>
+{% endblock %}

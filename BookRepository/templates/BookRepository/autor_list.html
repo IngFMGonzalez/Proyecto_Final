@@ -1,0 +1,30 @@
+{% extends "BookRepository/base.html" %}
+
+{% block main %}
+<br>
+</br>
+<form action="?" method="GET">
+    <p>
+        <label for="criterio"></label>
+        <input type="text" name="criterio" value= "{{ request.get.criterio }}" maxlength="100" required="" id="" placeholder="Criterio de Busqueda">   
+      </p> 
+      <p>
+        <input type="submit" value="Buscar">
+      </p>
+</form>
+
+    <ul>
+    {% for autor in object_list  %}
+    <li>
+        {{autor}}
+        <a href="{% url 'autor-detail' autor.id %}" > Detalle</a>
+        {% if user.is_authenticated and autor.publisher1 == user %}
+            <a href="{% url 'autor-update' autor.id %}" > Actualizar</a>
+            <a href="{% url 'autor-delete' autor.id %}" > Borrar</a>
+        {% endif %}
+    </li>
+    {% empty %}
+    No existen registos
+    {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "BookRepository/base.html" %}
+
+{% block main %}
+<br>
+</br>
+
+    <h1 style="text-align:center"> Gracias por tu visita! </h1>
+    <h2 style="text-align:center"> Te esperamos pronto... </h2>
+    <META HTTP-EQUIV="REFRESH" CONTENT="5; URL={% url 'index' %}">
+{% endblock %}

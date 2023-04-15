@@ -1,0 +1,22 @@
+{% extends "BookRepository/base.html" %}
+
+{% block main %}
+<br>
+</br>
+<p>
+    <h1 align="center">{{object.titulo}}</h1>
+    <br>
+    <table align="center" width="500px" height="100%">
+    <tr>
+
+        <td><img src="{{ object.imagen.url }}" width="200px" height="100%"></td>
+        <td>   </td>
+        <td><em><span width="200px">{{object.prologo}}</span></em></td>
+    
+    
+      </tr>
+    </table>
+      <br>
+    <a href="javascript:history.back()"> Volver</a>
+</p>
+{% endblock %}

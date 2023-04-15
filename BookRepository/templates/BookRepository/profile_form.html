@@ -1,0 +1,16 @@
+{% extends "BookRepository/base.html" %}
+
+{% block main %}
+<br>
+</br>
+<h1>PERFIL DE USUARIO </h1>
+<br>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Guardar">
+</form>
+<br>
+</br>
+<a href="javascript:history.back()"> Volver</a>
+{% endblock %}

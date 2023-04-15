@@ -1,0 +1,25 @@
+{% extends "BookRepository/base.html" %}
+
+{% block main %}
+<br>
+</br>
+<ul>
+
+    <h1> Lista de Mensajes</h1>
+
+
+    {% for mensaje in mensajes  %}
+    <li>
+        <p>{{mensaje.email}}</p>
+        <br>
+        <p>{{mensaje.mensaje}}</p>
+        {% if user.is_authenticated and mensaje.destinatario == user %}
+            <a href="{% url 'mensaje-delete' mensaje.id %}" > Borrar</a>
+        {% endif %}
+    </li>
+    {% empty %}
+    No existen mensajes en bandeja
+
+    {% endfor %} 
+</ul>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "BookRepository/base.html" %}
+
+{% block main %}
+    <br>
+    <br>
+
+    <h1>{{object.nombre}} {{object.apellido}}</h1>
+    <br>
+    
+    <img src="{{ object.imagen.url }}" width="400px" height="100%" aling="text-center">
+    <br>
+    <br>
+    &nbsp;{{object.nacionalidad}}
+    <br>
+    &nbsp;{{object.fecha_nacimiento}}
+    <br>
+    <br>
+    <a href="javascript:history.back()"> Volver</a>
+
+{% endblock %}
+

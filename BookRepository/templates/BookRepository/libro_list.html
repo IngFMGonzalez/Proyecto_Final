@@ -1,0 +1,32 @@
+{% extends "BookRepository/base.html" %}
+
+{% block main %}
+<br>
+</br>
+<h1> Libros Disponibles</h1>
+<form action="?" method="GET">
+    <p>
+        <label for="criterio"></label>
+        <input type="text" name="criterio" value= "{{ request.get.criterio }}" maxlength="100" required="" id="" placeholder="Criterio de Busqueda">   
+      </p> 
+      <p>
+        <input type="submit" value="Buscar">
+      </p>
+</form>
+
+    <ul>
+    {% for libro in object_list  %}
+    <li>
+        {{libro}} 
+        <a href="{% url 'libro-detail' libro.id %}" > Detalle</a>
+        {% if user.is_authenticated and libro.publisher == user %}
+            <a href="{% url 'libro-update' libro.id %}" > Actualizar</a>
+            <a href="{% url 'libro-delete' libro.id %}" > Borrar</a>
+        {% endif %}
+    </li>
+    {% empty %}
+    No existen registos
+    {% endfor %}
+    </ul>
+  
+{% endblock %}
