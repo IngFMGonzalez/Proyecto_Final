@@ -144,7 +144,7 @@ class AutorDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 class SignUp(CreateView):
     form_class = UserCreationForm
     template_name = 'registration/signup.html'
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('login')
 
 class Login(LoginView):
     next_page = reverse_lazy("index")
@@ -162,13 +162,6 @@ class ProfileUpdate(LoginRequiredMixin, UpdateView):
          form.instance.user = self.request.user
          return super().form_valid(form)
 
-    def test_func(self):
-        user_id = self.request.user.id
-        profile_id = self.kwargs.get('pk')
-        return Profile.objects.filter(publisher2=user_id, id=profile_id).exists()
-    
-    def handle_no_permission(self):
-        return render(self.request, "BookRepository/404_not_found.html")
 
 class ProfileCreate(LoginRequiredMixin, CreateView):
     model = Profile
@@ -179,14 +172,7 @@ class ProfileCreate(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
          form.instance.user = self.request.user
          return super().form_valid(form)
-    
-    def test_func(self):
-        user_id = self.request.user.id
-        profile_id = self.kwargs.get('pk')
-        return Profile.objects.filter(publisher2=user_id, id=profile_id).exists()
-    
-    def handle_no_permission(self):
-        return render(self.request, "BookRepository/404_not_found.html")
+
 
 
 
