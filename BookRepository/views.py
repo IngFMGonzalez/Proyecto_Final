@@ -149,19 +149,8 @@ class SignUp(CreateView):
 class Login(LoginView):
     next_page = reverse_lazy("index")
     
-
 class Logout(LogoutView):
     template_name = 'registration/logout.html'
-
-class ProfileUpdate(LoginRequiredMixin, UpdateView):
-    model = Profile
-    success_url = reverse_lazy("index")
-    fields = ['imagen']
-
-    def form_valid(self, form):
-         form.instance.user = self.request.user
-         return super().form_valid(form)
-
 
 class ProfileCreate(LoginRequiredMixin, CreateView):
     model = Profile
@@ -173,6 +162,14 @@ class ProfileCreate(LoginRequiredMixin, CreateView):
          form.instance.user = self.request.user
          return super().form_valid(form)
 
+class ProfileUpdate(LoginRequiredMixin, UpdateView):
+    model = Profile
+    success_url = reverse_lazy("index")
+    fields = ['imagen']
+
+    def form_valid(self, form):
+         form.instance.user = self.request.user
+         return super().form_valid(form)
 
 
 
