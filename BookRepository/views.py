@@ -170,7 +170,7 @@ class ProfileUpdate(LoginRequiredMixin, UpdateView):
     def handle_no_permission(self):
         return render(self.request, "BookRepository/404_not_found.html")
 
-class ProfileCreate(LoginRequiredMixin, UserPassesTestMixin, CreateView):
+class ProfileCreate(LoginRequiredMixin, CreateView):
     model = Profile
     template_name = 'BookRepository/profile_form.html'
     success_url = reverse_lazy('index')
